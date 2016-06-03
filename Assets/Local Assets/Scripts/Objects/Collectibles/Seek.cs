@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Seek  {
-
-
+public class Seek: Collectible  {
 
 }
