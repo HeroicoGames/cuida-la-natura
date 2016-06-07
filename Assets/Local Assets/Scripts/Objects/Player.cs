@@ -3,24 +3,19 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	private Inventory myInventory;
+	private Inventory myInventory = new Inventory();
 
-	void PickUpObject(){
-		// Recoger objeto para resolver el puzzle
-	
+	void PickUpCollectible(Collectible collectible){
+		myInventory.AddCollectible (collectible);
 	}
 
-	void DamageFromObstacle(){
-		// Contacto con los obstaculos
-	}
-
-	void ResolvePuzzle(){
+	void FinishPuzzleReaction(){
 		// Contacto con la resolución del puzzle o parte de este
 	}
 
-	void FinishPuzzle(){
+	void ObstacleReaction(){
 	
-		// Acción al resolver el puzzle
+		// Animación cuando lo toca un obstaculo
 	}
 
 	// Use this for initialization
@@ -30,6 +25,11 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+//		if (Input.GetKeyDown ("c"))
+//			myInventory.CountCollectible ();
+	}
+
+	void OnTriggerEnter(Collider otherCollider) {
+		PickUpCollectible (otherCollider.gameObject.GetComponent<Collectible>());
 	}
 }

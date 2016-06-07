@@ -5,10 +5,8 @@ public abstract class Obstacle : MonoBehaviour {
 
 	public abstract void hurtPorcentage();
 
-	public Obstacle(string name) {
-
-		this.name = name;
-
+	public Obstacle(string new_name) {
+		this.name = new_name;
 	}
 
 	// TODO: Dejar hurtPorcentage o PlayerDamage

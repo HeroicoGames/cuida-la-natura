@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class Destiny : MonoBehaviour {
+public abstract class Target : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
