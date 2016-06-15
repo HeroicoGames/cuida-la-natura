@@ -10,8 +10,9 @@ public class Inventory : MonoBehaviour {
 		collectibles.Add (collectible);
 	}
 
-	public void CountCollectible() {
+	public int CountCollectible() {
 		print (collectibles.Count);
+		return collectibles.Count;
 	}
 
 	// Use this for initialization

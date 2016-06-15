@@ -7,11 +7,13 @@ public class Stage : MonoBehaviour {
 	private string initialNegativeMessage = "Actualmente la deforestación acaba con los bosques del mundo";
 	private string initialPositiveMessage = "";
 	private float time;
+	private float availableTime = 0.3f; // In minuts
 
 	public GameObject target;
 	public GameObject collectible;
 	public int quantityCollectibles = 1;
 	public int quantityTargets = 1;
+	public int requiredCollectibles = 1;
 
 	void InitialNegativeMessage(){
 		Debug.Log (initialNegativeMessage);
@@ -25,15 +27,17 @@ public class Stage : MonoBehaviour {
 		time += Time.deltaTime;
 
 		float minutes = time / 60; // Divide the guiTime by sixty to get the minutes.
-		float seconds = time % 60;// Use the euclidean division for the seconds.
+		float seconds = time % 60; // Use the euclidean division for the seconds.
 		float fraction = (time * 100) % 100;
 
-		//update the label value
-		Debug.Log(string.Format ("{0:00} : {1:00} : {2:000}", minutes, seconds, fraction));
+		// update the label value
+		// Debug.Log(string.Format ("{0:00} : {1:00} : {2:000}", minutes, seconds, fraction));
 	}
 
 	void OverTime() {
-		// Este método setea y valida cuando se acabo el tiempo
+		if (availableTime <= time / 60) {
+			Time.timeScale = 0;
+		}
 	}
 
 	void Win(){
@@ -103,7 +107,8 @@ public class Stage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// Timer ();
+		Timer ();
 		GenerateObstacles ();
+		OverTime ();
 	}
 }

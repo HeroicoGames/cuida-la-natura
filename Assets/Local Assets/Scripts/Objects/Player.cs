@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	// private Inventory myInventory = new Inventory();
-	Inventory myInventory;
+	public Inventory myInventory;
 
 	void PickUpCollectible(Collectible collectible){
 		myInventory.AddCollectible (collectible);
@@ -31,6 +31,9 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider otherCollider) {
-		PickUpCollectible (otherCollider.gameObject.GetComponent<Collectible>());
+
+		if (otherCollider.transform.tag == "Collectible") {
+			PickUpCollectible (otherCollider.gameObject.GetComponent<Collectible>());
+		}
 	}
 }
