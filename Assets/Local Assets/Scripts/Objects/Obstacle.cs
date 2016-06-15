@@ -9,7 +9,7 @@ public abstract class Obstacle : MonoBehaviour {
 		this.name = new_name;
 	}
 
-	// TODO: Dejar hurtPorcentage o PlayerDamage
+	// TODO: Dejar hurtPorcentage o PlayerDamage?
 	void PlayerDamage(){
 
 		// Contacto con player

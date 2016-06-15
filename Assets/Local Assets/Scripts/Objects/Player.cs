@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	private Inventory myInventory = new Inventory();
+	// private Inventory myInventory = new Inventory();
+	Inventory myInventory;
 
 	void PickUpCollectible(Collectible collectible){
 		myInventory.AddCollectible (collectible);
@@ -20,13 +21,13 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		myInventory = gameObject.AddComponent<Inventory> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-//		if (Input.GetKeyDown ("c"))
-//			myInventory.CountCollectible ();
+		if (Input.GetKeyDown ("q"))
+			myInventory.CountCollectible ();
 	}
 
 	void OnTriggerEnter(Collider otherCollider) {
