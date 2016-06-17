@@ -2,18 +2,19 @@
 using UnityEngine.UI;
 using System.Collections;
 
+// TODO: Stage is base class?
 public class Stage : MonoBehaviour {
 
 	private string initialNegativeMessage = "Actualmente la deforestación acaba con los bosques del mundo";
 	private string initialPositiveMessage = "";
 	private float time;
-	private float availableTime = 0.3f; // In minuts
+	private float availableTime = 1f; // In minuts
 
 	public GameObject target;
 	public GameObject collectible;
 	public int quantityCollectibles = 1;
 	public int quantityTargets = 1;
-	public int requiredCollectibles = 1;
+
 
 	void InitialNegativeMessage(){
 		Debug.Log (initialNegativeMessage);
@@ -31,7 +32,7 @@ public class Stage : MonoBehaviour {
 		float fraction = (time * 100) % 100;
 
 		// update the label value
-		// Debug.Log(string.Format ("{0:00} : {1:00} : {2:000}", minutes, seconds, fraction));
+		Debug.Log(string.Format ("{0:00} : {1:00} : {2:000}", minutes, seconds, fraction));
 	}
 
 	void OverTime() {
@@ -109,6 +110,6 @@ public class Stage : MonoBehaviour {
 	void Update () {
 		Timer ();
 		GenerateObstacles ();
-		// OverTime ();
+		OverTime ();
 	}
 }

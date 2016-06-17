@@ -3,6 +3,18 @@ using System.Collections;
 
 public class Target : MonoBehaviour {
 
+	public int requiredCollectibles = 1;
+
+	void IsCompletionCollectibles() {
+		int collectibles = GameObject.Find ("Player").GetComponent<Player>().myInventory.CountCollectible ();
+
+		if (collectibles >= requiredCollectibles) {
+			print ("Eres la verga");
+		} else {
+			print ("Vamos a calmarno");
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 	
@@ -14,13 +26,6 @@ public class Target : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider otherCollider) {
-		int requiredCollectibles = GameObject.Find ("Stage").GetComponent<Stage>().requiredCollectibles;
-		int collectibles = GameObject.Find ("Player").GetComponent<Player>().myInventory.CountCollectible ();
-
-		if (collectibles >= requiredCollectibles) {
-			print ("Eres la verga");
-		} else {
-			print ("Vamos a calmarno");
-		}
+		IsCompletionCollectibles ();
 	}
 }
