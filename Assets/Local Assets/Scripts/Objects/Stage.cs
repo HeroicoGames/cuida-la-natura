@@ -109,6 +109,6 @@ public class Stage : MonoBehaviour {
 	void Update () {
 		Timer ();
 		GenerateObstacles ();
-		OverTime ();
+		// OverTime ();
 	}
 }
