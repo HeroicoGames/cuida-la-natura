@@ -5,6 +5,7 @@ public class Player : MonoBehaviour {
 
 	// private Inventory myInventory = new Inventory();
 	public Inventory myInventory;
+	private bool is_winner;
 
 	void PickUpCollectible(Collectible collectible){
 		myInventory.AddCollectible (collectible);
@@ -19,6 +20,14 @@ public class Player : MonoBehaviour {
 		// Animación cuando lo toca un obstaculo
 	}
 
+	public void set_is_winner(bool val) {
+		is_winner = val;
+	}
+
+	public bool get_is_winner() {
+		return is_winner;
+	}
+
 	// Use this for initialization
 	void Start () {
 		myInventory = gameObject.AddComponent<Inventory> ();
@@ -31,7 +40,6 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider otherCollider) {
-
 		if (otherCollider.transform.tag == "Collectible") {
 			PickUpCollectible (otherCollider.gameObject.GetComponent<Collectible>());
 		}

@@ -3,10 +3,10 @@ using System.Collections;
 
 public abstract class Collectible : MonoBehaviour {
 
-	public string name;
+	public string title;
 
-	public Collectible(string new_name) {
-		this.name = new_name;
+	public Collectible(string new_title) {
+		this.title = new_title;
 	}
 
 	public Collectible () {

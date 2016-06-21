@@ -10,8 +10,11 @@ public class Stage : MonoBehaviour {
 	private float time;
 	private float availableTime = 1f; // In minuts
 
+	private Player player;
+
 	public GameObject target;
 	public GameObject collectible;
+	public GameObject objective;
 	public int quantityCollectibles = 1;
 	public int quantityTargets = 1;
 
@@ -21,6 +24,7 @@ public class Stage : MonoBehaviour {
 	}
 
 	void FinalPositiveMessage(){
+		Debug.Log (initialPositiveMessage);
 		// Mensaje final sobre como ayudar a natura y el impacto positivo
 	}
 
@@ -38,12 +42,16 @@ public class Stage : MonoBehaviour {
 	void OverTime() {
 		if (availableTime <= time / 60) {
 			Time.timeScale = 0;
+			player.set_is_winner (false);
 		}
 	}
 
-	void Win(){
-		// Ejecutar función que genera la acción de victoria y mostrar mensaje positivo final
-		FinalPositiveMessage ();
+	void Winner(){
+		if (player.get_is_winner() == true) {
+			VictoryAction ();
+			FinalPositiveMessage ();
+			player.set_is_winner (false);
+		}
 	}
 
 	void GameOver(){
@@ -96,11 +104,13 @@ public class Stage : MonoBehaviour {
 	}
 
 	void VictoryAction () {
-		
+		// Mostrar el arbol y animar al personaje
+		Instantiate(objective, Vector3.zero, Quaternion.identity);
 	}
 		
 	// Use this for initialization
 	void Start () {
+		player = GameObject.Find ("Player").GetComponent<Player>();
 		InitialNegativeMessage ();
 		GenerateCollectibles ();
 		GenerateTargets ();
@@ -108,8 +118,9 @@ public class Stage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Timer ();
 		GenerateObstacles ();
+		Timer ();
 		OverTime ();
+		Winner ();
 	}
 }

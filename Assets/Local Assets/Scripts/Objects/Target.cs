@@ -4,11 +4,13 @@ using System.Collections;
 public class Target : MonoBehaviour {
 
 	public int requiredCollectibles = 1;
+	private Player player;
 
 	void IsCompletionCollectibles() {
-		int collectibles = GameObject.Find ("Player").GetComponent<Player>().myInventory.CountCollectible ();
+		int collectibles = player.myInventory.CountCollectible ();
 
 		if (collectibles >= requiredCollectibles) {
+			player.set_is_winner (true);
 			print ("Eres la verga");
 		} else {
 			print ("Vamos a calmarno");
@@ -17,7 +19,7 @@ public class Target : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		player = GameObject.Find ("Player").GetComponent<Player>();
 	}
 	
 	// Update is called once per frame
