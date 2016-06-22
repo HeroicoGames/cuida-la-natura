@@ -11,7 +11,6 @@ public class Target : MonoBehaviour {
 
 		if (collectibles >= requiredCollectibles) {
 			player.set_is_winner (true);
-			print ("Eres la verga");
 		} else {
 			print ("Vamos a calmarno");
 		}

@@ -5,8 +5,11 @@ using System.Collections;
 // TODO: Stage is base class?
 public class Stage : MonoBehaviour {
 
-	private string initialNegativeMessage = "Actualmente la deforestación acaba con los bosques del mundo";
-	private string initialPositiveMessage = "";
+	enum Status {Running, Finish};
+	Status status = Status.Running;
+
+	private string negativeMessage = "Actualmente la deforestación acaba con los bosques del mundo";
+	private string positiveMessage = "Si plantas un arbol dejarás un mundo mejor para las futuras generaciones";
 	private float time;
 	private float availableTime = 1f; // In minuts
 
@@ -20,12 +23,11 @@ public class Stage : MonoBehaviour {
 
 
 	void InitialNegativeMessage(){
-		Debug.Log (initialNegativeMessage);
+		Debug.Log (negativeMessage);
 	}
 
 	void FinalPositiveMessage(){
-		Debug.Log (initialPositiveMessage);
-		// Mensaje final sobre como ayudar a natura y el impacto positivo
+		Debug.Log (positiveMessage);
 	}
 
 	void Timer() {
@@ -47,10 +49,10 @@ public class Stage : MonoBehaviour {
 	}
 
 	void Winner(){
-		if (player.get_is_winner() == true) {
+		if (player.get_is_winner() == true && status == Status.Running) {
 			VictoryAction ();
 			FinalPositiveMessage ();
-			player.set_is_winner (false);
+			status = Status.Finish;
 		}
 	}
 
@@ -118,9 +120,12 @@ public class Stage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		GenerateObstacles ();
-		Timer ();
-		OverTime ();
+		// TODO: Realmente esto va aquí o dentro de cada método
+		if (status == Status.Running) {
+			GenerateObstacles ();
+			Timer ();
+			OverTime ();
+		}
 		Winner ();
 	}
 }
